@@ -6,6 +6,7 @@ class Produto {
   constructor(nome, preco) {
     this.#nome = nome;
     this.#preco = preco;
+    Object.freeze(this)
   }
 
   get getNome(){
@@ -26,5 +27,5 @@ class Produto {
   }
 }
 
-module.exports = { Produto }
+module.exports = { Produto };
 

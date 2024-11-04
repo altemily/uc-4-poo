@@ -2,7 +2,8 @@ class Conta{
     #saldo;
 
     constructor(saldoInicial){
-        this.#saldo = saldoInicial
+        this.#saldo = saldoInicial;
+        Object.freeze(this)
     }
     depositar(valor){
         if(valor>0){
@@ -14,7 +15,7 @@ class Conta{
                 this.#saldo -= valor;
     }
     get getSaldo(){
-        return this.saldo;
+        return this.#saldo;
     }
 
 }

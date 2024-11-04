@@ -2,14 +2,15 @@ const { Produto } = require("./produto");
 
 
 class Pedido {
-  #produtos = [];
+  #produtos 
 
     constructor(){
         this.#produtos = [];
+        Object.freeze(this)
     }
-    adicionarProduto(produto){
-        if(produto instanceof Produto){
-            this.#produtos.push(produto)
+    adicionarProduto(novoProduto){
+        if(novoProduto instanceof Produto){
+            this.#produtos.push(novoProduto)
         }else{
             console.log('Somente objetos do tipo Produto podem ser adiconados!')
         }
@@ -19,10 +20,14 @@ class Pedido {
         this.#produtos.forEach(produto =>{
             console.log(produto.getInfoProduto());
         })
+        console.log(`Total = ${this.calcularTotal()}`)
+    }
+
+    calcularTotal(){
+
+        return this.#produtos.reduce((total, produto) => total + produto.getPreco ,0);
     }
 }
-
-
 
 
 
