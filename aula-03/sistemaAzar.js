@@ -1,3 +1,6 @@
+const { Dado } = require('./dado');
+
+
 class SistemaAzar {
     constructor() {
       this.jogador = null;
@@ -8,7 +11,7 @@ class SistemaAzar {
       if (this.jogador && this.jogador.getAposta() === this.dado.getFace()) {
         console.log(`Parabéns, ${this.jogador.getNome()}! Você acertou!`);
       } else {
-        console.log(`Que pena, ${this.jogador ? this.jogador.getNome() : 'Jogador'}! Você errou sua aposta.`);
+        console.log(`Que pena, ${this.jogador ? this.jogador.getNome() : 'Jogador'}! Não foi dessa vez. Tente novamente!`);
       }
     }
   
