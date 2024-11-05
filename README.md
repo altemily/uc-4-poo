@@ -1,5 +1,7 @@
-# UC4 - Programação Orientada a Objetos (JavaScript)
+# UC4 - Programação Orientada a Objetos 
 
+
+## 📚 Sobre
 Este repositório contém as atividades realizadas na disciplina de Programação Orientada a Objetos (POO) em JavaScript.
 
 ## Estrutura do Repositório
@@ -8,9 +10,9 @@ Este repositório contém as atividades realizadas na disciplina de Programaçã
 - **Exercícios**: Exercícios adicionais para praticar os conceitos.
 
 
+#### ⚠️ Aviso
+Este repositório é apenas para fins acadêmicos. A utilização das soluções apresentadas aqui para fins comerciais ou em ambientes de produção não é permitida.
 
+##### 📄 Licença
+Este projeto está licenciado sob a [Licença MIT](LICENSE).
 
-
-#Licença
-
-Este projeto está sob a Licença MIT.
