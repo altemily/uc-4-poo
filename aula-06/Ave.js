@@ -7,8 +7,8 @@ class Ave extends Animal{
 
     constructor(nome, idade, tipoBico, capacidadeVoo){
         super(nome, idade);
-        this.#tipoBico;
-        this.#capacidadeVoo;
+        this.#tipoBico = tipoBico;
+        this.#capacidadeVoo = capacidadeVoo
         Object.freeze(this);
     }
 
@@ -30,7 +30,7 @@ class Ave extends Animal{
     }
 
     getInfo(){
-        console.log (`Nome: ${this.getNome}, Idade: ${this.getIdade}, Tipo de bico: ${this.getTipoBicoo}, Capacidade de Voo: ${this.getCapacidadeVoo}`)
+        console.log (`Nome: ${this.getNome}, Idade: ${this.getIdade}, Tipo de bico: ${this.getTipoBico}, Capacidade de Voo: ${this.getCapacidadeVoo}`)
         }
 }
 

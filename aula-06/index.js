@@ -3,9 +3,9 @@ const { Mamifero } = require('./Mamifero')
 const { Ave } = require('./Ave')
 
 
-let a1 = new Animal('Steve', '10');
-let m1 = new Mamifero ('Steve', 'Husky')
-let ave = new Ave('Passarinho', '5',)
+let a1 = new Animal();
+let m1 = new Mamifero ()
+let ave = new Ave()
 
 
 a1.getInfo()

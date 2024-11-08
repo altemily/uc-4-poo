@@ -6,8 +6,8 @@ class Mamifero extends Animal {
 
     constructor( nome, idade, tipoPelo, habitat){
         super(nome, idade);
-        this.#tipoPelo;
-        this.#habitat;
+        this.#tipoPelo = tipoPelo
+        this.#habitat = habitat
         Object.freeze(this);
     }
 
@@ -15,7 +15,7 @@ class Mamifero extends Animal {
         return this.#tipoPelo;
     }
     get getHabitat(){
-        return this.#tipoPelo
+        return this.#habitat
     }
     set setTipoPelo(tipoPelo){
         this.#tipoPelo = tipoPelo
