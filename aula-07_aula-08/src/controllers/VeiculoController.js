@@ -32,6 +32,38 @@ class VeiculoController{
             console.log('Nenhum veículo cadastrado!');
         }
     }
+    buscarId(indice){
+        if(bancoVeiculos.length>=indice-1){
+         return true;
+     }   
+        return false;
+
+}
+
+    editarVeiculo(indice, novosDados){
+        const veiculo = bancoVeiculos.findIndex(indice-1);
+        if(veiculo!== -1){
+            const novoVeiculo = bancoVeiculos[indice-1];
+            if(novosDados.marca){
+                novoVeiculo.setMarca = novosDados.marca;
+            }
+            if(novosDados.ano){
+                novoVeiculo.setAno = novosDados.ano;
+            }
+            if(novosDados.modelo){
+                novoVeiculo.setModelo = novosDados.modelo;
+            }
+            if(novosDados.cor){
+                novoVeiculo.setCor = novosDados.cor;
+            }
+            console.log('Veículo atualizado com sucesso. Novos dados: ')
+            novoVeiculo.getInfo();
+            bancoVeiculos[indice-1] = novoVeiculo;
+        }else{
+            console.log('Veículo não encontrado!');
+        }
+
+    }
 }
 
 

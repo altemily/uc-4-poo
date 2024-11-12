@@ -25,7 +25,7 @@ class Carro extends Veiculo{
     }
 
     calcularValor(){
-        console.log(`Valor estimado do Carro: R$ ${(2024-this.getAno)*10000}`);
+        console.log(`Valor estimado do Carro: R$ ${(this.getAno)*100}`);
     }
     getInfo(){
         console.log(`Marca: ${this.getMarca}, Ano: ${this.getAno}, Cor: ${this.getCor}, Modelo: ${this.getModelo}`);
