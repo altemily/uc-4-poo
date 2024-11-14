@@ -12,12 +12,12 @@ class Notebook {
       this.#preco = preco;
     }
   
-    get getNumeroSerie() {
+    get getNumeroDeSerie() {
       return this.#numeroDeSerie;
     }
   
-    set setNumeroSerie(numeroSerie) {
-      this.#numeroDeSerie = numeroSerie;
+    set setNumeroSerie(NovoNumeroDeSerie) {
+      this.#numeroDeSerie = NovoNumeroDeSerie;
     }
   
     get getPreco() {
