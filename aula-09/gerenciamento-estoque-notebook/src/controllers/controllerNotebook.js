@@ -1,5 +1,5 @@
 const { databaseNotebook } = require('../config/databaseNotebook')
-
+const { Notebook} = require('../models/Notebook');
 
 class ControllerNotebook {
   
@@ -82,130 +82,7 @@ class ControllerNotebook {
   
   
   
-  const controller = new ControllerNotebook();
+ module.exports = { ControllerNotebook };
   
+ 
   
-  controller.adicionarNotebook("123ABC", "Dell", "Inspiron", "Preto", 2500.00);
-  controller.adicionarNotebook("456DEF", "HP", "Pavilion", "Prata", 3000.00);
-  
-
-  controller.listarNotebooks();
-  
-  
-//   controller.listarNotebooks("123ABC");
-  
-//   controller.editarNotebook("123ABC", { preco: 2700.00, cor: "Azul" });
-  
-  
-//   controller.excluirNotebook("456DEF");
-  
-  
-//   controller.excluirTodosNotebooks();
-  
-  
-//   controller.listarNotebooks();
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// class ControllerNotebook {
-//     adicionarNotebook(){
-//         try {
-            
-//         } catch (error) {
-            
-//         }
-//     }
-//     listarNotebooks(){
-//         try {
-            
-//         } catch (error) {
-            
-//         }
-//     }
-//     editarNotebook(){
-//         try {
-            
-//         } catch (error) {
-            
-//         }
-//     }
-//     excluirNotebook(){
-//         try {
-            
-//         } catch (error) {
-            
-//         }
-//     }
-//     excluirTodosNotebook(){
-//         try {
-            
-//         } catch (error) {
-            
-//         }
-//     }
-
-// }
