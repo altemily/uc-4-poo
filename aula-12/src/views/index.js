@@ -1,28 +1,28 @@
 const prompt = require('prompt-sync')();
-const { Tarefa } = require('../models/tarefas');  
-const { TarefasPessoais } = require('../models/tarefasPessoais')
+const { TarefasController } = require('../controllers/tarefasController');
 
-const controller = new TarefaController();
+const controller = new TarefasController();
 
-function iniciarSistema(){
+function iniciarSistema() {
     let opcao;
-    do{
-        console.log('=== Sistema de Gerenciamento de Tarefas ===');
-        console.log('1. Adicionar Tarefas');
-        console.log('2. Listar Tarefas');
-        console.log('3. Editar');
-        console.log('4. Excluir Tarefas');
-        console.log('0. Sair');
+    do {
+        console.log('=== Gerenciamento de Tarefas ===');
+        console.log('1 - Adicionar Tarefa: ');
+        console.log('2 - Listar Tarefas: ');
+        console.log('3 - Editar Tarefa: ');
+        console.log('4 - Excluir Tarefa: ');
+        console.log('0 - Sair.');
         opcao = prompt('Escolha uma opção (0 a 4): ');
-        switch(opcao){
+
+        switch (opcao) {
             case '0':
-                console.log('Saindo do Sistema...');
+                console.log('Saindo do sistema...');
                 break;
             case '1':
-                adicionarTarefas();
+                adicionarTarefa();
                 break;
             case '2':
-                controller.listarTarefas();
+                controller.Listartarefas();
                 break;
             case '3':
                 editarTarefa();
@@ -31,44 +31,51 @@ function iniciarSistema(){
                 excluirTarefa();
                 break;
             default:
-                console.log('Opção Inválida');
+                console.log('Opção inválida, tente novamente.');
         }
-        
-    }while(opcao!=='3');
+    } while (opcao !== '0');
 }
 
-
-function adicionarTarefas(){
-    const tipo = prompt('Digite o tipo de Tarefa (Tarefa Pessoal / Tarefa Profissional / Tarefa): ');
-    const descricao = prompt('Digite a tarefa: ');
-    const status = prompt('Digite o status da tarefa: ');
-    const prioridade = prompt('Digite o nível de prioridade da tarefa: ');
-    const data = prompt('Digite a data da tarefa: ')
-    controller.criarTarefa(tipo, descricao, status, prioridade, data);
-}
-
-function editarTarefa(){
-    const indice = parseInt(prompt('Digite o indice que que você deseja editar: '))
-    const result = controller.buscarId(indice);
-    if(result){
-        console.log('Informe os novos dados (pressione enter para manter a tarefa atual): ')
-        const descricao = prompt('Achei!');
-        const status = parseInt(prompt('Novo ano: '));
-        const prioridade = prompt('Novo modelo: ');
-        const data = prompt('Nova cor: ');
-        const novosDados = {};
-        if(descricao) novosDados.descricao = descricao;
-        if(status) novosDados.status = status;
-        if(prioridade) novosDados.prioridade = prioridade;
-        if(data) novosDados.data = data;
-        controller.editarVeiculo(indice, novosDados);
-    }else{
-        console.log('Informe um índice válido!')
+function adicionarTarefa() {
+    const tipo = prompt('Informe o tipo da tarefa (Pessoal ou Profissional): ').toLowerCase();
+    if (!['pessoal', 'profissional'].includes(tipo)) {
+        console.log('Tipo de tarefa inválido.');
+        return;
     }
+
+    const descricao = prompt('Descrição: ');
+    const status = prompt('Status (Não Finalizada / Finalizada): ');
+    const prioridade = tipo !== 'tarefa' ? prompt('Prioridade: ') : undefined;
+    const data = tipo !== 'tarefa' ? prompt('Data: ') : undefined;
+
+    controller.Adicionartarefas(tipo, descricao, status, prioridade, data);
+}
+
+function editarTarefa() {
+    const indice = parseInt(prompt('Informe a tarefa que deseja editar: '), 10);
+    if (isNaN(indice) || indice <= 0) {
+        console.log('Índice inválido. Tente novamente.');
+        return;
+    }
+
+    const novosDados = {};
+    novosDados.descricao = prompt('Descrição (pressione "Enter" para manter a atual): ');
+    novosDados.status = prompt('Status ( pressione "Enter" para manter o atual): ');
+    novosDados.prioridade = prompt('Prioridade (pressione "Enter" para manter a atual): ');
+    novosDados.data = prompt('Data (pressione "Enter" para manter a atual): ');
+
+    controller.EditarTarefa(indice, novosDados);
 }
 
 
+function excluirTarefa() {
+    const indice = parseInt(prompt('Qual tarefa que deseja excluir? '), 10);
+    if (isNaN(indice) || indice <= 0) {
+        console.log('Índice inválido. Tente novamente.');
+        return;
+    }
 
+    controller.ExcluirTarefa(indice);
+}
 
-
-iniciarSistema(); 
+iniciarSistema();

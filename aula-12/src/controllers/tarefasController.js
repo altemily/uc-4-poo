@@ -1,70 +1,85 @@
-const { Tarefa } = require('../models/tarefas');
+const { Tarefas } = require('../models/tarefas');
 const { TarefasPessoais } = require('../models/tarefasPessoais');
 const { TarefasProfissionais } = require('../models/tarefasProfissionais');
-const bancoTarefas = [];  
+
+const bancoTarefas = [];
 
 class TarefasController {
-
-    criarTarefa(tipo, descricao, status = "Não finalizada", prioridade = "Média", data = null) {
+    Adicionartarefas(tipo, descricao, status, prioridade, data) {
         let tarefa;
-
-        if (tipo.toLowerCase() === 'tarefa pessoal') {
+        if (tipo.toLowerCase() === 'pessoal') {
             tarefa = new TarefasPessoais(descricao, status, prioridade, data);
-        } else if (tipo.toLowerCase() === 'tarefa profissional') {
+        } else if (tipo.toLowerCase() === 'profissional') {
             tarefa = new TarefasProfissionais(descricao, status, prioridade, data);
-        } else if (tipo.toLowerCase() === 'tarefa') {
-            tarefa = new Tarefa(descricao, status);
         } else {
-            console.log('Tipo de Tarefa inválido.');
+            console.log('Tipo de tarefa inválido.');
             return;
         }
 
         bancoTarefas.push(tarefa);
-        console.log('Tarefa adicionada com sucesso!');
+        console.log('Tarefa criada com sucesso!');
     }
 
-    listarTarefas() {
+    Listartarefas() {
         if (bancoTarefas.length > 0) {
-            console.log('==== Tarefas ====');
+            console.log('=== Tarefas Registradas ===');
             bancoTarefas.forEach((tarefa, index) => {
-                console.log(`${index + 1}:`);
-                tarefa.getInfo();  
+                console.log(`Tarefa ${index + 1}`);
+                tarefa.getInfo();
             });
         } else {
-            console.log('Nenhuma tarefa adicionada!');
+            console.log('Nenhuma tarefa registrada.');
         }
     }
 
-    buscarTarefaPorId(indice) {
-        if (bancoTarefas.length >= indice) {
-            return bancoTarefas[indice - 1];  
-        }
-        console.log('Tarefa não encontrada!');
-        return null;
+    BuscarId(indice) {
+        // Corrigindo lógica
+        return indice > 0 && indice <= bancoTarefas.length;
     }
 
-    
-    editarTarefa(indice, novosDados) {
-        const tarefa = bancoTarefas[indice - 1]; 
-        if (tarefa) {
-            if (novosDados.descricao) {
-                tarefa.setDescricao = novosDados.descricao;
-            }
-            if (novosDados.status) {
-                tarefa.setStatus = novosDados.status;
-            }
-            if (novosDados.prioridade) {
-                tarefa.setPrioridade = novosDados.prioridade;
-            }
-            if (novosDados.data) {
-                tarefa.setData = novosDados.data;
-            }
-
-            console.log('Tarefa atualizada com sucesso. Novos dados:');
-            tarefa.getInfo();  
-        } else {
-            console.log('Tarefa não encontrada!');
+    EditarTarefa(indice, novosDados) {
+        if (!this.BuscarId(indice)) {
+            console.log('Índice inválido.');
+            return;
         }
+
+        const tarefa = bancoTarefas[indice - 1];
+
+        if (novosDados.descricao) {
+            tarefa.setDescricao = novosDados.descricao;
+        }
+        if (novosDados.status) {
+            tarefa.setStatus = novosDados.status;
+        }
+        if (novosDados.prioridade && tarefa.setPrioridade) {
+            tarefa.setPrioridade = novosDados.prioridade;
+        }
+        if (novosDados.data && tarefa.setData) {
+            tarefa.setData = novosDados.data;
+        }
+
+        console.log('Tarefa editada com sucesso!');
+    }
+
+    FinalizarTarefa(indice) {
+        if (!this.BuscarId(indice)) {
+            console.log('Índice inválido.');
+            return;
+        }
+
+        const tarefa = bancoTarefas[indice - 1];
+        tarefa.finalizarTarefa();
+        console.log('Tarefa finalizada com sucesso!');
+    }
+
+    ExcluirTarefa(indice) {
+        if (!this.BuscarId(indice)) {
+            console.log('Índice inválido.');
+            return;
+        }
+
+        bancoTarefas.splice(indice - 1, 1);
+        console.log('Tarefa excluída com sucesso!');
     }
 }
 

@@ -1,36 +1,34 @@
-const { Tarefa } = require('./tarefas');
+const { Tarefas } = require('../models/tarefas');
 
-
-class TarefasPessoais extends Tarefa {
-#prioridade;
-#data;
+class TarefasPessoais extends Tarefas {
+    #prioridade;
+    #data;
 
     constructor(descricao, status, prioridade, data) {
-        super(descricao, status); 
-        this.#prioridade = prioridade;  
-        this.#data = data;              
+        super(descricao, status);
+        this.#prioridade = prioridade;
+        this.#data = data;
     }
 
-    set setPrioridade(prioridade) {
-        const prioridadesValidas = ["Baixa", "Média", "Alta"];
-        if (prioridadesValidas.includes(prioridade)) {
-            this.#prioridade = prioridade;
-        } else {
-            console.log("Prioridade inválida!");
-        }
-    }
     get getPrioridade() {
         return this.#prioridade;
     }
-    set setData(data) {
-        this.#data = data;
+
+    set setPrioridade(prioridade) {
+        this.#prioridade = prioridade;
     }
+
     get getData() {
         return this.#data;
     }
+
+    set setData(data) {
+        this.#data = data;
+    }
+
     getInfo() {
-        return `Descrição: ${this.getDescricao()} | Status: ${this.getStatus()} | Prioridade: ${this.getPrioridade()} | Data: ${this.getData()}`;
+        console.log(`Descrição: ${this.getDescricao}, Status: ${this.getStatus}, Prioridade: ${this.getPrioridade}, Data: ${this.getData}`);
     }
 }
 
-module.exports = { TarefasPessoais }
+module.exports = { TarefasPessoais };
